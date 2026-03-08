@@ -1,0 +1,26 @@
+From 361a80b11cdf1fe45ea05affbdcaf2babcfa2465 Mon Sep 17 00:00:00 2001
+From: xnnnsets <muhamadsolihin019501@gmail.com>
+Date: Mon, 9 Mar 2026 06:06:56 +0700
+Subject: [PATCH] pe
+
+---
+ kernel/supercalls.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/kernel/supercalls.c b/kernel/supercalls.c
+index 7744ead7..8debcae5 100644
+--- a/kernel/supercalls.c
++++ b/kernel/supercalls.c
+@@ -361,7 +361,9 @@ static int do_set_app_profile(void __user *arg)
+     ret = ksu_set_app_profile(&cmd.profile);
+     if (!ret) {
+         ksu_persistent_allow_list();
++#ifndef CONFIG_KSU_SUSFS
+         ksu_mark_running_process();
++#endif
+     }
+     return ret;
+ }
+-- 
+2.43.0
+
