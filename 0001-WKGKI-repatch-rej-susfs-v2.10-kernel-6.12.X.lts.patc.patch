@@ -1,0 +1,27 @@
+From 58fd2f15eb333340c36a5aa9227e0bbc9bb11b56 Mon Sep 17 00:00:00 2001
+From: xnnnsets <muhamadsolihin019501@gmail.com>
+Date: Mon, 6 Apr 2026 17:45:23 +0700
+Subject: [PATCH] WKGKI-repatch-rej-susfs-v2.10-kernel-6.12.X.lts.patch
+
+---
+ fs/exec.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/fs/exec.c b/fs/exec.c
+index c485f25..e2d9768 100644
+--- a/fs/exec.c
++++ b/fs/exec.c
+@@ -71,6 +71,10 @@
+ #include <linux/ksm.h>
+ #include <linux/dma-buf.h>
+ 
++#ifdef CONFIG_KSU_SUSFS
++#include <linux/susfs_def.h>
++#endif
++
+ #include <linux/uaccess.h>
+ #include <asm/mmu_context.h>
+ #include <asm/tlb.h>
+-- 
+2.43.0
+
